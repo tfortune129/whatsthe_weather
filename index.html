@@ -5,25 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1>My Weather App</h1>
+    <center>
+        
+    <h1>My Weather App (in F &deg;)</h1>
 
-<form id="myForm">
-    <input type="text" name="cityName">
-    <button type="submit" id="submitButton">Submit</button>
-</form>    
+    <form id="myForm">
+        <input type="text" id="cityName" placeholder="Enter city name here">
+        <button type="submit" id="submitButton">Search</button>
+    </form>    
 
-<div class="container"></div>
 
     <div id="weather">
-        
+      
         <div id="icon"></div>
-        <h1 id="temp"></h1>
         <div id="description"></div>
         <div id="location"></div>
+        <h1 id="temp"></h1> 
+        <h2 id="maxTemp"></h2>
+        <h3 id="minTemp"></h3>
+        <h4 id="humidity"></h4>
+       </center>
+
+        
+        
+        
     </div>
 
+    <div class="container"></div>
 
 <script src="main.js"></script>
 

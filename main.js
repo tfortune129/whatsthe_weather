@@ -15,46 +15,69 @@
 // const getWeather = async
 
 const myForm = document.getElementById('myForm');
-const submit = document.getElementById('submitButton')
-const city = document.getElementById('cityName')
+const submitButton = document.getElementById('submitButton')
+const cityInput = document.getElementById('cityName')
 
-myForm.addEventListener('submit', function (event){
+myForm.addEventListener('submit', function(event){
   event.preventDefault();
-  getWeather('New York');
+  getWeather(cityName.value);
 });
 
 
 // const myForm = document.getElementById('myForm');
 // myForm.addEventListener('submit', getFormData)
 function getWeather(cityName) {
-    var key = '80e13b63ec5ae7ad4b77734e6f61dd2d';
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + key)  
-    .then(function(resp) { return resp.json() }) 
+    const key = '80e13b63ec5ae7ad4b77734e6f61dd2d';
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=` + cityName + `&appid=` + key)  
+    .then(function(resp) { 
+      return resp.json() }) 
     //return response as json
     .then(function(data) {
-       postWeather (data);
+      postWeather (data);
     //    const temperature = data.main.temp;
     //    const fahrenheit = (temperature - 273.15) * 9/5 + 32;
     //    console.log(fahrenheit);
 
+    console.log(data)
     })
     .catch(function() {
+      console.error('Please search City again.')
       // catch() function to run if there are any errors in function 
     });
   }
-getWeather()
+// getWeather()
 
 
-function postWeather (data) {
-    const temperature = data.main.temp;
+function postWeather(data) {
+    const temperature = data.main.temp;    
     const fahrenheit = Math.round(parseFloat((temperature - 273.15) * 9/5 + 32));
+    const humidity = data.main.humidity;
+    const mintemp = data.main.temp_min;
+    const maxtemp = data.main.temp_max;
+    const maxTemp = Math.round(parseFloat((maxtemp - 273.15) * 9/5 + 32));
+    const minTemp = Math.round(parseFloat((mintemp - 273.15) * 9/5 + 32));
+    
+    const description = data.weather[0].description;
+    const upperdescription = description.charAt(0).toUpperCase() + description.slice(1);
+
+
     const icon = data.weather[0].icon;
-    const iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    const iconUrl = `http://openweathermap.org/img/wn/` + icon + `@2x.png`;
     
     document.getElementById('icon').innerHTML = "<img src='" + iconUrl + "' alt='Weather Icon'>";
-    document.getElementById('temp').innerHTML = fahrenheit + '&deg;';
-    document.getElementById('description').innerHTML = data.weather[0].description;
+    document.getElementById('temp').innerHTML = 'Temperature now: ' + fahrenheit + '&deg;';
+    document.getElementById('description').innerHTML = upperdescription;
+    // document.getElementById('description').innerHTML = data.weather[0].description;
     document.getElementById('location').innerHTML = data.name;
+    document.getElementById('maxTemp').innerHTML = 'High: ' + maxTemp + '&deg;';
+    document.getElementById('minTemp').innerHTML = 'Low: ' + minTemp + '&deg;';
+    document.getElementById('humidity').innerHTML = 'Humidity: ' + humidity + '%';
+
+
+//     const container = document.querySelector('.container');
+//     if (container.innerHTML !==''){
+//         container.innerHTML = ''
+//     }
 } 
 
 
