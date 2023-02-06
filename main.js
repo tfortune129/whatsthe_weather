@@ -4,11 +4,6 @@
 
 // const request = async url => {
 
-
-//     const res = await fetch(url);
-//     return res.ok ? res.json() : Promise.reject({error: 500})
-//     // data = await res.json();
-
 //     // console.log(data)
 // };
 
@@ -73,12 +68,43 @@ function postWeather(data) {
     document.getElementById('minTemp').innerHTML = 'Low: ' + minTemp + '&deg;';
     document.getElementById('humidity').innerHTML = 'Humidity: ' + humidity + '%';
 
+ //remove header image when a search is made:
+  // function replaceHeader(description){
+  //   const headerContainer = document.getElementById('headerContainer');
 
-//     const container = document.querySelector('.container');
-//     if (container.innerHTML !==''){
-//         container.innerHTML = ''
-//     }
-} 
+
+  //conditionals for weather condition: make case sensitive and index of non specific interms of position:
+    if (description.toLowerCase().indexOf('rain') >= 0) {
+      document.body.classList.add('rainy');
+      document.getElementById('imgContainer').innerHTML = '<img src="/images/rain.jpeg" alt="Rainy Weather">';
+  } else if (description.toLowerCase().indexOf('cloud') >= 0) {
+      document.body.classList.add('cloudy');
+      document.getElementById('imgContainer').innerHTML = '<img src="/images/cloud.jpeg" alt="Cloudy Weather">';
+  } else if (description.toLowerCase().indexOf('clear') >= 0) {
+    document.body.classList.add('clear');
+    document.getElementById('imgContainer').innerHTML = '<img src="/images/clear.avif" alt="Clear Weather">';
+  } else if (description.toLowerCase().indexOf('sunny') >= 0) {
+      document.body.classList.add('sunny');
+      document.getElementById('imgContainer').innerHTML = '<img src="/images/sunny.jpeg" alt="Sunny Weather">';
+  } else if (description.toLowerCase().indexOf('snow') >= 0) {
+      document.body.classList.add('snow');
+      document.getElementById('imgContainer').innerHTML = '<img src="/images/snow.avif" alt="Snowy Weather">';
+  } else {
+      document.body.classList.remove('rainy');
+      document.body.classList.remove('cloudy');
+      document.body.classList.remove('sunny');
+      document.body.classList.remove('clear');
+      document.body.classList.remove('snow');
+      document.getElementById('headerContainer').innerHTML = '<img src="/images/header.gif" alt="GIF">';
+  }
+}
+
+
+
+
+
+////////////////////////////referece///////////////////////////////
+
 
 
 // const getFormData = async (e) => {
