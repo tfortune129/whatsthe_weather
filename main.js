@@ -77,18 +77,23 @@ function postWeather(data) {
     if (description.toLowerCase().indexOf('rain') >= 0) {
       document.body.classList.add('rainy');
       document.getElementById('imgContainer').innerHTML = '<img src="/images/rain.jpeg" alt="Rainy Weather">';
+      document.getElementById('headerContainer').innerHTML = '';
   } else if (description.toLowerCase().indexOf('cloud') >= 0) {
       document.body.classList.add('cloudy');
       document.getElementById('imgContainer').innerHTML = '<img src="/images/cloud.jpeg" alt="Cloudy Weather">';
+      document.getElementById('headerContainer').innerHTML = '';
   } else if (description.toLowerCase().indexOf('clear') >= 0) {
     document.body.classList.add('clear');
     document.getElementById('imgContainer').innerHTML = '<img src="/images/clear.avif" alt="Clear Weather">';
+    document.getElementById('headerContainer').innerHTML = '';
   } else if (description.toLowerCase().indexOf('sunny') >= 0) {
       document.body.classList.add('sunny');
       document.getElementById('imgContainer').innerHTML = '<img src="/images/sunny.jpeg" alt="Sunny Weather">';
+      document.getElementById('headerContainer').innerHTML = '';
   } else if (description.toLowerCase().indexOf('snow') >= 0) {
       document.body.classList.add('snow');
       document.getElementById('imgContainer').innerHTML = '<img src="/images/snow.avif" alt="Snowy Weather">';
+      document.getElementById('headerContainer').innerHTML = '';
   } else {
       document.body.classList.remove('rainy');
       document.body.classList.remove('cloudy');
@@ -96,6 +101,7 @@ function postWeather(data) {
       document.body.classList.remove('clear');
       document.body.classList.remove('snow');
       document.getElementById('headerContainer').innerHTML = '<img src="/images/header.gif" alt="GIF">';
+      
   }
 }
 
